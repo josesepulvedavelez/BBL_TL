@@ -25,5 +25,34 @@ namespace BBL_TL.Infra.Repositories
             return incidentes;
         }
 
+        public async Task<int> InsertIncidente(Incidente incidente)
+        {
+            await _context.Incidente.AddAsync(incidente);
+            var result = await _context.SaveChangesAsync();
+
+            return result;
+        }
+
+        public async Task<int> UpdateIncidente(Guid incidenteId, Incidente incidente)
+        {
+            var existeIncidente =await  _context.Incidente.FirstOrDefaultAsync(x => x.IncidenteId == incidenteId);
+
+            existeIncidente.Titulo = incidente.Titulo;
+            existeIncidente.Descripcion = incidente.Descripcion;
+            existeIncidente.TipoIncidenteId = incidente.TipoIncidenteId;
+            existeIncidente.NivelSeveridad = incidente.NivelSeveridad;
+            existeIncidente.Estado = incidente.Estado;
+            existeIncidente.FechaHoraInicio = incidente.FechaHoraInicio;
+            existeIncidente.FechaHoraFin = incidente.FechaHoraFin;
+            existeIncidente.Ubicacion = incidente.Ubicacion;
+            existeIncidente.CoordenadasLatitude = incidente.CoordenadasLatitude;
+            existeIncidente.CoordenadasLongitude = incidente.CoordenadasLongitude;
+            existeIncidente.ReportadoPorUsuarioId = incidente.ReportadoPorUsuarioId;
+
+            var update = await _context.SaveChangesAsync();
+
+            return update;
+        }
+
     }
 }

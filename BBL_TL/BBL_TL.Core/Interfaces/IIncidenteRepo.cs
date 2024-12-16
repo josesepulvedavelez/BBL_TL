@@ -10,5 +10,7 @@ namespace BBL_TL.Core.Interfaces
     public interface IIncidenteRepo
     {
         Task<IEnumerable<Incidente>> GetAllIncidentes();
+        Task<int> InsertIncidente(Incidente incidente);
+        Task<int> UpdateIncidente(Guid incidenteId, Incidente incidente);
     }
 }
