@@ -1,0 +1,6 @@
+@BBL_TL.Api_HostAddress = http://localhost:5250
+
+GET {{BBL_TL.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
