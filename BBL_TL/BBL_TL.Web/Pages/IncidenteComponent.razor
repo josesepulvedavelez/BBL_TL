@@ -1,0 +1,36 @@
+﻿@page "/IncidenteComponent"
+
+<h3>IncidenteComponent</h3>
+
+@code {
+    List<Incidente> _Incidentes;
+    Incidente _incidente;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetAllIncidentes();
+    }
+
+    public async Task GetAllIncidentes()
+    {
+        var response = await _http.GetFromJsonAsync<List<Incidente>>("Incidente/GetAllIncidentes");
+
+        if (response != null)
+        {
+            _Incidentes = response;
+        }
+    }
+
+    public async Task InsertIncidente()
+    {
+        // var json = JsonConvert.SerializeObject(_incidente);
+        // var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+        // var httpResponse = await _http.PostAsync("Incidente/InsertIncidente", stringContent);
+    }
+
+    public async Task UpdateIncidente()
+    {
+        
+    }
+
+}
