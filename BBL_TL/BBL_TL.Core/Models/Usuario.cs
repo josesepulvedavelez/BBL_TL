@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,15 +10,35 @@ namespace BBL_TL.Core.Models
 {
     public class Usuario
     {
+        [Key]        
         public Guid UsuarioId { get; set; }
-        public string Nombre { get; set; } = null!;
-        public string Apellido { get; set; } = null!;
-        public string Email { get; set; } = null!;
-        public string? NumeroTelefono { get; set; }
-        public string Rol { get; set; } = null!; // Consider using an enum
-        public Guid? EquipoId { get; set; }
-        public Equipo? Equipo { get; set; }
-        public string Credenciales { get; set; } = null!;
-        public ICollection<Incidente> IncidentesReportados { get; set; } = new List<Incidente>();
+
+        [Required]
+        [StringLength(50)]
+        public string Nombre { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Apellido { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        [EmailAddress]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(15)]
+        public string NumeroTelefono { get; set; }
+
+        [Required]
+        public int Rol { get; set; }
+
+        [Required]
+        [StringLength(10)]
+        public string Credenciales { get; set; }
+
+        [Required]
+        [ForeignKey("EquipoId")]
+        public Guid EquipoId { get; set; }
     }
 }

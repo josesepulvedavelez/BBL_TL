@@ -35,19 +35,18 @@ namespace BBL_TL.Infra.Repositories
 
         public async Task<int> UpdateIncidente(Guid incidenteId, Incidente incidente)
         {
-            var existeIncidente =await  _context.Incidente.FirstOrDefaultAsync(x => x.IncidenteId == incidenteId);
+            var existeIncidente = await  _context.Incidente.FirstOrDefaultAsync(x => x.IncidenteId == incidenteId);
 
             existeIncidente.Titulo = incidente.Titulo;
             existeIncidente.Descripcion = incidente.Descripcion;
-            existeIncidente.TipoIncidenteId = incidente.TipoIncidenteId;
             existeIncidente.NivelSeveridad = incidente.NivelSeveridad;
             existeIncidente.Estado = incidente.Estado;
             existeIncidente.FechaHoraInicio = incidente.FechaHoraInicio;
             existeIncidente.FechaHoraFin = incidente.FechaHoraFin;
             existeIncidente.Ubicacion = incidente.Ubicacion;
-            existeIncidente.CoordenadasLatitude = incidente.CoordenadasLatitude;
-            existeIncidente.CoordenadasLongitude = incidente.CoordenadasLongitude;
-            existeIncidente.ReportadoPorUsuarioId = incidente.ReportadoPorUsuarioId;
+            existeIncidente.Coordenadas = incidente.Coordenadas;
+            existeIncidente.TipoIncidenteId = incidente.TipoIncidenteId;
+            existeIncidente.UsuarioId = incidente.UsuarioId;
 
             var update = await _context.SaveChangesAsync();
 

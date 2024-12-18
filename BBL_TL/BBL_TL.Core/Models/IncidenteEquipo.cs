@@ -8,17 +8,14 @@ using System.Threading.Tasks;
 
 namespace BBL_TL.Core.Models
 {
-    public class Equipo
+    public class IncidenteEquipo
     {
-        [Key]        
+        [Key, Column(Order = 0)]
+        [ForeignKey("Equipo")]
         public Guid EquipoId { get; set; }
 
-        [Required]
-        [StringLength(50)]
-        public string Nombre { get; set; }
-
-        [Required]
-        [ForeignKey("TipoEquipo")]
-        public Guid TipoEquipoId { get; set; }        
+        [Key, Column(Order = 1)]
+        [ForeignKey("Incidente")]
+        public Guid IncidenteId { get; set; }
     }
 }

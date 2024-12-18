@@ -1,6 +1,8 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -10,29 +12,42 @@ namespace BBL_TL.Core.Models
 {
     public class Incidente
     {
+        [Key]        
         public Guid IncidenteId { get; set; }
-        public string Titulo { get; set; } = null!;
-        public string? Descripcion { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Titulo { get; set; }
+
+        [Required]
+        [StringLength(500)]
+        public string Descripcion { get; set; }
+
+        [Required]
+        public int NivelSeveridad { get; set; }
+
+        [Required]
+        public int Estado { get; set; }
+
+        [Required]
+        public DateTime FechaHoraInicio { get; set; }
+
+        public DateTime? FechaHoraFin { get; set; }
+
+        [Required]
+        [StringLength(200)]
+        public string Ubicacion { get; set; }
+
+        [Required]
+        [Column(TypeName = "decimal(18, 9)")]
+        public decimal Coordenadas { get; set; }
+
+        [Required]
+        [ForeignKey("TipoIncidente")]
         public Guid TipoIncidenteId { get; set; }
 
-        [JsonIgnore]
-        public TipoIncidente? TipoIncidente { get; set; } = null!;
-        public string NivelSeveridad { get; set; } = null!;
-        public string Estado { get; set; } = null!;
-        public DateTime FechaHoraInicio { get; set; }
-        public DateTime? FechaHoraFin { get; set; }
-        public string? Ubicacion { get; set; }
-        public decimal? CoordenadasLatitude { get; set; }
-        public decimal? CoordenadasLongitude { get; set; }
-        public Guid ReportadoPorUsuarioId { get; set; }
-
-        [JsonIgnore]
-        public Usuario? ReportadoPorUsuario { get; set; } = null!;
-
-        [JsonIgnore]
-        public ICollection<Equipo>? Equipos { get; set; } = new List<Equipo>();
-
-        [JsonIgnore]
-        public ICollection<Recurso>? Recursos { get; set; } = new List<Recurso>();
+        [Required]
+        [ForeignKey("Usuario")]
+        public Guid UsuarioId { get; set; }
     }
 }

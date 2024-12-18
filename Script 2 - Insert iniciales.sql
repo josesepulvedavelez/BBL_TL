@@ -21,3 +21,5 @@ DECLARE @EquipoId2 UNIQUEIDENTIFIER;
 	INSERT INTO Usuario (Nombre, Apellido, Email, NumeroTelefono, Rol, Credenciales, EquipoId) VALUES ('Maria', 'Gomez', 'maria.gomez@gmail.com', '9876543210', 2, 'cred456', @EquipoId2);
 	INSERT INTO Usuario (Nombre, Apellido, Email, NumeroTelefono, Rol, Credenciales, EquipoId) VALUES ('Luis', 'Lopez', 'luis.lopez@gmail.com', '1231231234', 2, 'cred789', @EquipoId2);
 
+INSERT INTO TipoIncidente(Nombre, Descripcion) VALUES('INCENDIO', 'INCENDIO');
+INSERT INTO TipoIncidente(Nombre, Descripcion) VALUES('LLUVIA', 'LLUVIA');
